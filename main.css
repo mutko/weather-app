@@ -73,14 +73,15 @@ h1, h2, p {
     margin-left: auto;
 }
 
-.app-header__search input {
+/* .app-header__search input {
     outline: none;
     border: none;
     font-family: inherit;
     font-size: 100%;
-    width: 35px;
+    width: 65px;
     padding: 5px 0;
-    background: url('icons/search.svg') no-repeat right center;
+    background: transparent;
+    border-bottom: 1px solid #fff;
     color: transparent;
     cursor: pointer;
     transition: all .5s;
@@ -91,17 +92,18 @@ h1, h2, p {
 }
 .app-header__search input[type=search]:focus {
     width: 150px;
-    border-bottom: 1px solid #fff;
     padding-right: 25px;
 	color: #fff;
 }
 .app-header__search input:-moz-placeholder {
-	color: transparent;
+	color: #fff;
 }
 .app-header__search input::-webkit-input-placeholder {
-	color: transparent;
+	color: #fff;
+} */
+#search-btn {
+    cursor: pointer;
 }
-
 .app-header__screen {
     padding: 40px 0 140px;
 }
