@@ -114,6 +114,13 @@ h1, h2, p {
 .app-header__screen .temperature {
     font-size: 42px;
 }
+#conditions img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 30px;
+    fill: #fff;
+}
+
 
 .app-body__icons,
 .app-body__temp-icons {

@@ -21,13 +21,17 @@
                     <p>Branko's<br>Wheater&nbsp;App</p>
                     <div class="app-header__search">
                         <input type="search" name="search" placeholder="Search..">
-                        <!-- <img src="icons/search.svg" alt="Search icon"> -->
                     </div>
                 </header>
                 <section class="app-header__screen">
                     <h1 id="city">Sidney</h1>
-                    <p id="temperature" class="temperature">+23<sup>o</sup></p>
-                    <p id="conditions">Sunny</p>
+                    <p class="temperature">
+                        <span id="temp">+23</span><sup>o</sup>
+                    </p>
+                    <p id="conditions">
+                        <!-- <img src="icons/sun.svg" alt="Weather state icon"> -->
+                        <span>Sunny</span>
+                    </p>
                 </section>
 
             </div><!-- end wrapper -->
@@ -35,32 +39,42 @@
 
         <div class="app-body">
             <div class="app-body__icons">
-                <div id="wind" class="app-body__icon">
+                <div class="app-body__icon">
                     <img src="icons/wind.svg" alt="Wind speed">
-                    <p>Wind&nbsp;12m/s</p>
+                    <p>
+                        Wind</span>&nbsp;
+                        <span id="wind">10</span>m/s</p>
                 </div>
-                <div id="humidity" class="app-body__icon">
+                <div class="app-body__icon">
                     <img src="icons/humidity.svg" alt="Humidity percent">
-                    <p>Humidity&nbsp;85%</p>
+                    <p>
+                        Humidity&nbsp;
+                        <span id="humidity">85</span>%
+                    </p>
                 </div>
-                <div id="pressure" class="app-body__icon">
+                <div class="app-body__icon">
                     <img src="icons/pressure.svg" alt="Atmospheric pressure">
-                    <p>Atmpr&nbsp;1000mb</p>
+                    <p>
+                        Atmpr&nbsp;
+                        <span id="pressure">1000</span>mb</p>
                 </div>
             </div>
             <div class="app-body__temp-icons">
                 <img src="icons/temp.svg" alt="Temperature">
                 <div class="app-body__temp">
                     <p>Now</p>
-                    <p id="temp-now">23<sup>o</sup></p>
+                    <br>
+                    <span id="temp-now">23</span><sup>o</sup>
                 </div>
                 <div class="app-body__temp">
                     <p>Min</p>
-                    <p id="temp-min">17<sup>o</sup></p>
+                    <br>
+                    <span id="temp-min">17</span><sup>o</sup>
                 </div>
                 <div class="app-body__temp">
                     <p>Max</p>
-                    <p id="temp-max">29<sup>o</sup></p>
+                    <br>
+                    <span id="temp-max">29</span><sup>o</sup>
                 </div>
             </div>
         </div><!-- end app-body -->
