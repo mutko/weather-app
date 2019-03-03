@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Weather App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    
+</head>
+<body>
+    <div class="app-container">
+        
+        <div class="app-header">
+            <div class="wrapper">
+
+                <header class="app-header__buttons">
+                    <div class="hamb-button">
+                        <i class="fas fa-bars fa-2x"></i>
+                    </div>
+                    <p>Branko's<br>Wheater&nbsp;App</p>
+                    <div class="app-header__search">
+                        <input type="text" name="search">
+                        <i class="fas fa-search fa-lg"></i>
+                    </div>
+                </header>
+                <section class="app-header__screen">
+                    <h1 id="city">Sidney</h1>
+                    <p id="temperature" class="temperature">+23<sup>o</sup></p>
+                    <p id="conditions">Sunny</p>
+                </section>
+
+            </div><!-- end wrapper -->
+        </div><!-- end app-header -->
+
+        <div class="app-body">
+            <div id="wind" class="app-body__icon">
+                <p>Wind 1 m/s</p>
+            </div>
+            <div id="humidity" class="app-body__icon">
+                <p>Humidity 85%</p>
+            </div>
+            <div id="visibility" class="app-body__icon">
+                <p>Visibility 9.5 miles</p>
+            </div>
+            <div id="pressure" class="app-body__icon">
+                <p>Pressure 1000 mb</p>
+            </div>
+        </div><!-- end app-body -->
+
+        <div class="app-footer">
+            <nav class="app-nav">
+                <ul class="app-nav__list">
+                    <li>
+                        <a href="#">Today</a>
+                    </li>
+                    <li>
+                        <a href="#">Week</a>
+                    </li>
+                    <li>
+                        <a href="#">Share</a>
+                    </li>
+                </ul>
+            </nav>
+        </div><!-- end app-footer -->
+        
+    </div><!-- end app-container -->
+    
+
+
+    <script src="main.js"></script>
+</body>
+</html>

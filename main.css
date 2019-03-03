@@ -1,0 +1,107 @@
+/* 
+    colors on app
+
+    Warm colors
+    Warm Dark           #f19c82
+    Warm Medium         #ffbaa3
+    Warm Medium         #eecca8
+    Warm Light          #fad4af
+
+    Cold colors
+    Cold Dark           #1c3b88
+    Cold Medium         #524ea4
+    Cold Medium         #403d6a
+    Cold Light          #6365cf
+
+*/
+
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
+
+:root {
+    box-sizing: border-box;
+}
+*, 
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 300;
+    text-align: center;
+}
+h1, h2, p {
+    margin: 0;
+}
+
+.app-container {
+    width: 500px;
+    margin: 0 auto;
+}
+.wrapper {
+    padding: 20px;
+}
+
+.app-header {
+    background: #403d6a;
+    color: #fff;
+}
+.app-header__buttons {
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+.hamb-button {
+    padding-right: 40px;
+    cursor: pointer;
+}
+.app-header__buttons p {
+    font-weight: 400;
+}
+.app-header__search {
+    margin-left: auto;
+}
+.app-header__search input {
+    display: none;
+}
+
+.app-header__screen {
+    padding: 60px 0;
+}
+.app-header__screen h1 {
+    padding-bottom: 30px;
+    letter-spacing: 1.2px;
+}
+.app-header__screen .temperature {
+    font-size: 42px;
+}
+
+.app-body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+}
+.app-body__icon {
+    width: 75px;
+    height: 75px;
+    padding: 20px;
+    background: #403d6a;
+    color: #fff;
+    border-radius: 5px;
+    position: relative;
+    top: -40px;
+}
+
+.app-nav__list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+.app-nav__list > li {
+    padding: 20px;
+}
