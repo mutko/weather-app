@@ -72,8 +72,34 @@ h1, h2, p {
 .app-header__search {
     margin-left: auto;
 }
+
 .app-header__search input {
-    display: none;
+    outline: none;
+    border: none;
+    font-family: inherit;
+    font-size: 100%;
+    width: 35px;
+    padding: 5px 0;
+    background: url('icons/search.svg') no-repeat right center;
+    color: transparent;
+    cursor: pointer;
+    transition: all .5s;
+}
+.app-header__search input::-webkit-search-decoration,
+.app-header__search input::-webkit-search-cancel-button {
+	display: none; 
+}
+.app-header__search input[type=search]:focus {
+    width: 150px;
+    border-bottom: 1px solid #fff;
+    padding-right: 25px;
+	color: #fff;
+}
+.app-header__search input:-moz-placeholder {
+	color: transparent;
+}
+.app-header__search input::-webkit-input-placeholder {
+	color: transparent;
 }
 
 .app-header__screen {
