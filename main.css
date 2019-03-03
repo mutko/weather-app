@@ -13,6 +13,7 @@
     Cold Medium         #403d6a
     Cold Light          #6365cf
 
+    Gray                #2f4f4f
 */
 
 
@@ -33,6 +34,7 @@ body {
     padding: 0;
     font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     font-weight: 300;
+    font-size: 14px;
     text-align: center;
 }
 h1, h2, p {
@@ -40,15 +42,16 @@ h1, h2, p {
 }
 
 .app-container {
-    width: 500px;
+    max-width: 400px;
     margin: 0 auto;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 .wrapper {
     padding: 20px;
 }
 
 .app-header {
-    background: #403d6a;
+    background: url('bg.png') no-repeat bottom center, linear-gradient(to top,#fad4af, #f19c82);
     color: #fff;
 }
 .app-header__buttons {
@@ -56,9 +59,12 @@ h1, h2, p {
     display: flex;
     align-items: center;
 }
-.hamb-button {
-    padding-right: 40px;
+.map-button {
+    padding-right: 20px;
     cursor: pointer;
+}
+.map-button > img {
+    width: 25px;
 }
 .app-header__buttons p {
     font-weight: 400;
@@ -71,37 +77,56 @@ h1, h2, p {
 }
 
 .app-header__screen {
-    padding: 60px 0;
+    padding: 40px 0 140px;
 }
 .app-header__screen h1 {
-    padding-bottom: 30px;
+    font-weight: 400;
+    font-size: 32px;
     letter-spacing: 1.2px;
+    padding-bottom: 20px;
 }
 .app-header__screen .temperature {
     font-size: 42px;
 }
 
-.app-body {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: center;
+.app-body__icons,
+.app-body__temp-icons {
+    display: flex;
+    justify-content: space-evenly;
 }
 .app-body__icon {
-    width: 75px;
-    height: 75px;
-    padding: 20px;
-    background: #403d6a;
+    width: 110px;
+    height: 80px;
+    padding: 10px 0 20px;
+    background: #f19c82;
     color: #fff;
     border-radius: 5px;
     position: relative;
     top: -40px;
 }
-
+.app-body__icon > img {
+    width: 40px;
+}
+.app-body__temp-icons {
+    color: #2f4f4f;
+    margin-bottom: 40px;
+}
 .app-nav__list {
     list-style: none;
     padding: 0;
+    margin: 0;
     display: flex;
+    justify-content: space-evenly;
 }
 .app-nav__list > li {
-    padding: 20px;
+    padding: 10px 20px 20px;
+    cursor: pointer;
+}
+.app-nav__list > li > a {
+    text-decoration: none;
+    color: #2f4f4f;
+    font-weight: 400;
+}
+.app-nav__list .active a {
+    color: #f19c82;
 }

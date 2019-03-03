@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Weather App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     
 </head>
@@ -16,13 +15,13 @@
             <div class="wrapper">
 
                 <header class="app-header__buttons">
-                    <div class="hamb-button">
-                        <i class="fas fa-bars fa-2x"></i>
+                    <div class="map-button">
+                        <img src="icons/map-marker.svg" alt="Map marker icon">
                     </div>
                     <p>Branko's<br>Wheater&nbsp;App</p>
                     <div class="app-header__search">
                         <input type="text" name="search">
-                        <i class="fas fa-search fa-lg"></i>
+                        <img src="icons/search.svg" alt="Search icon">
                     </div>
                 </header>
                 <section class="app-header__screen">
@@ -35,31 +34,49 @@
         </div><!-- end app-header -->
 
         <div class="app-body">
-            <div id="wind" class="app-body__icon">
-                <p>Wind 1 m/s</p>
+            <div class="app-body__icons">
+                <div id="wind" class="app-body__icon">
+                    <img src="icons/wind.svg" alt="Wind speed">
+                    <p>Wind&nbsp;12m/s</p>
+                </div>
+                <div id="humidity" class="app-body__icon">
+                    <img src="icons/humidity.svg" alt="Humidity percent">
+                    <p>Humidity&nbsp;85%</p>
+                </div>
+                <div id="pressure" class="app-body__icon">
+                    <img src="icons/pressure.svg" alt="Atmospheric pressure">
+                    <p>Atmpr&nbsp;1000mb</p>
+                </div>
             </div>
-            <div id="humidity" class="app-body__icon">
-                <p>Humidity 85%</p>
-            </div>
-            <div id="visibility" class="app-body__icon">
-                <p>Visibility 9.5 miles</p>
-            </div>
-            <div id="pressure" class="app-body__icon">
-                <p>Pressure 1000 mb</p>
+            <div class="app-body__temp-icons">
+                <img src="icons/temp.svg" alt="Temperature">
+                <div class="app-body__temp">
+                    <p>Now</p>
+                    <p id="temp-now">23<sup>o</sup></p>
+                </div>
+                <div class="app-body__temp">
+                    <p>Min</p>
+                    <p id="temp-min">17<sup>o</sup></p>
+                </div>
+                <div class="app-body__temp">
+                    <p>Max</p>
+                    <p id="temp-max">29<sup>o</sup></p>
+                </div>
             </div>
         </div><!-- end app-body -->
 
         <div class="app-footer">
             <nav class="app-nav">
                 <ul class="app-nav__list">
-                    <li>
+                    <li class="active">
+                        <img src="icons/day.svg" alt="Day">
+                        <br>
                         <a href="#">Today</a>
                     </li>
                     <li>
-                        <a href="#">Week</a>
-                    </li>
-                    <li>
-                        <a href="#">Share</a>
+                        <img src="icons/week.svg" alt="Week">
+                        <br>
+                        <a href="#">Weekly</a>
                     </li>
                 </ul>
             </nav>
