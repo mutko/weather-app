@@ -1,6 +1,7 @@
 const id = (selector) => document.getElementById(selector);
 const searchBtn = id('search-btn');
 const mapBtn = id('map-btn')
+const searchByEnterKey = id("search-value");
 const proxy = 'https://proxy-requests.herokuapp.com/';
 
 let cityId;
@@ -103,3 +104,10 @@ getLocation();
 searchBtn.addEventListener('click', findCityById);
 
 mapBtn.addEventListener('click', getLocation);
+
+searchByEnterKey.addEventListener("keydown", function(event) {
+    if (event.which == 13 || event.keyCode == 13) {
+        event.preventDefault();
+        findCityById();
+    }
+});
