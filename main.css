@@ -52,7 +52,8 @@ h1, h2, p {
 
 .app-header {
     height: 60%;
-    background: url('bg.png') no-repeat bottom center, linear-gradient(to top,#fad4af, #f19c82);
+    background: #2C5364;
+    background: url('bg.png') no-repeat bottom center, linear-gradient(to top, #2C5364, #203A43, #0F2027);
     color: #fff;
 }
 .app-header__buttons {
@@ -129,7 +130,8 @@ h1, h2, p {
     width: 110px;
     height: 80px;
     padding: 10px 0 20px;
-    background: #f19c82;
+    background: #2C5364;
+    background: linear-gradient(to top, #2C5364, #203A43, #0F2027);
     color: #fff;
     border-radius: 5px;
     position: relative;

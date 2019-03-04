@@ -1,4 +1,7 @@
 const id = (selector) => document.getElementById(selector);
+
+let bodyIcons = document.getElementsByClassName('app-body__icon');
+
 const searchBtn = id('search-btn');
 const mapBtn = id('map-btn')
 const searchByEnterKey = id("search-value");
@@ -6,7 +9,6 @@ const proxy = 'https://proxy-requests.herokuapp.com/';
 
 let cityId;
 let mainTitle = id('city-name');
-
 
 function getLocation() {
   if (navigator.geolocation) {
@@ -56,6 +58,10 @@ function showWeather(cityForDisplay) {
     fetch(proxy+url) 
     .then( response => response.json() )
     .then( response => {
+        console.log(response);
+
+        const currentTime = response.time.substring(11,13);
+
         const cityName = response.title; 
         const weather = response.consolidated_weather[0];
         const weatherIcon = `https://www.metaweather.com/static/img/weather/${weather.weather_state_abbr}.svg`;
@@ -66,6 +72,18 @@ function showWeather(cityForDisplay) {
         const pressure = Math.floor(weather.air_pressure);
         const tempMin = Math.floor(weather.min_temp);
         const tempMax = Math.floor(weather.max_temp);
+
+        if ( currentTime > 6 && currentTime < 18 ) {
+            id('app-header').style.background = "url('bg.png') no-repeat bottom center, linear-gradient(to top, #fad4af, #f19c82)";
+            for (let i = 0; i < bodyIcons.length; i++) {
+                bodyIcons[i].style.background = "#f19c82";
+            }
+        } else {
+            id('app-header').style.background = "url('bg.png') no-repeat bottom center, linear-gradient(to top, #6365cf, #1c3b88)";
+            for (let i = 0; i < bodyIcons.length; i++) {
+                bodyIcons[i].style.background = "#524ea4";
+            }
+        }
 
         mainTitle.innerHTML = cityName;
 
