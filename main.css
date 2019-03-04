@@ -60,11 +60,11 @@ h1, h2, p {
     display: flex;
     align-items: center;
 }
-.map-button {
+.map-btn {
     padding-right: 20px;
     cursor: pointer;
 }
-.map-button > img {
+.map-btn > img {
     width: 25px;
 }
 .app-header__buttons p {

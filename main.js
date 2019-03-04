@@ -1,30 +1,41 @@
 const id = (selector) => document.getElementById(selector);
-
 const searchBtn = id('search-btn');
-
+const mapBtn = id('map-btn')
 const proxy = 'https://proxy-requests.herokuapp.com/';
 
-
-let latitude;
-let longitude;
-
 let cityId;
+let mainTitle = id('city-name');
 
 
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(getPosition);
+    navigator.geolocation.getCurrentPosition(getPosition, showError);
   } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
+    mainTitle.innerHTML = "Location is not supported by browser.";
   }
 }
 
+function showError(error) {
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        mainTitle.innerHTML = "Location denied. Try manual search."
+        break;
+      case error.POSITION_UNAVAILABLE:
+        mainTitle.innerHTML = "Location information is unavailable."
+        break;
+      case error.TIMEOUT:
+        mainTitle.innerHTML = "Location request timed out."
+        break;
+      case error.UNKNOWN_ERROR:
+        mainTitle.innerHTML = "An unknown error."
+        break;
+    }
+  }
+
 function getPosition(position) {
-    console.log(position);
-    latitude = position.coords.latitude;
-    console.log(latitude);
-    longitude = position.coords.longitude; 
-    console.log(longitude);
+
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude; 
 
     const geoSearch = `https://www.metaweather.com/api/location/search/?lattlong=${latitude},${longitude}`;
 
@@ -36,38 +47,6 @@ function getPosition(position) {
             showWeather(cityId);
         })
 }
-
-getLocation();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function showWeather(cityForDisplay) {
 
@@ -87,7 +66,8 @@ function showWeather(cityForDisplay) {
         const tempMin = Math.floor(weather.min_temp);
         const tempMax = Math.floor(weather.max_temp);
 
-        id('city-name').innerHTML = cityName;
+        mainTitle.innerHTML = cityName;
+
         id('temp').innerText = tempNow;
         id('conditions').innerHTML = `<img src=${weatherIcon} alt="Weather conditions"> 
                                         <span>${conditions}</span>
@@ -100,13 +80,8 @@ function showWeather(cityForDisplay) {
         id('temp-max').innerText = tempMax;
     })
 }
-// function call display default city
-// showWeather(cityId);
-   
 
-// function call display search city
-searchBtn.addEventListener('click', function() {
-
+function findCityById() {
     const citySearch = id('search-value').value;
     const cityQuery = `https://www.metaweather.com/api/location/search/?query=${citySearch}`;
     
@@ -114,11 +89,17 @@ searchBtn.addEventListener('click', function() {
         .then( response => response.json() )
         .then( response => {
             if (response[0] == undefined) {
-                id('city-name').innerHTML = `There is no ${citySearch} in our aplication`;
+                id('city-name').innerHTML = `Can't find ${citySearch} :(`;
             } else {
                 cityId = response[0].woeid;     
                 showWeather(cityId);
             }   
         })
+}
 
-})
+// function call display nearest city
+getLocation();
+
+searchBtn.addEventListener('click', findCityById);
+
+mapBtn.addEventListener('click', getLocation);
