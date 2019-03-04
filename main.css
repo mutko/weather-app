@@ -109,7 +109,7 @@ h1, h2, p {
     font-weight: 400;
     font-size: 32px;
     letter-spacing: 1.2px;
-    padding-bottom: 20px;
+    padding: 20px;
 }
 .app-header__screen .temperature {
     font-size: 42px;
@@ -117,8 +117,9 @@ h1, h2, p {
 #conditions img {
     display: inline-block;
     vertical-align: middle;
-    width: 30px;
-    fill: #fff;
+    width: 35px;
+    padding-right: 5px;
+    filter: brightness(0) invert(1); /* white icon */
 }
 
 .app-body__icons,
@@ -164,6 +165,12 @@ h1, h2, p {
 .app-nav__list .active a {
     color: #f19c82;
 }
+
+/* WAY TO CHANGE SVG IMG */
+/* .svg-img {
+    filter: invert(.5) sepia(1) saturate(5) hue-rotate(175deg);
+} */
+
 
 @media all and (max-width: 768px) {
     html, body, .app-container {
