@@ -42,7 +42,7 @@ h1, h2, p {
 }
 
 .app-container {
-    max-width: 400px;
+    max-width: 450px;
     margin: 0 auto;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
@@ -51,6 +51,7 @@ h1, h2, p {
 }
 
 .app-header {
+    height: 60%;
     background: url('bg.png') no-repeat bottom center, linear-gradient(to top,#fad4af, #f19c82);
     color: #fff;
 }
@@ -73,23 +74,19 @@ h1, h2, p {
     margin-left: auto;
 }
 
-/* .app-header__search input {
+.app-header__search input {
     outline: none;
     border: none;
     font-family: inherit;
     font-size: 100%;
-    width: 65px;
+    width: 120px;
     padding: 5px 0;
     background: transparent;
     border-bottom: 1px solid #fff;
-    color: transparent;
-    cursor: pointer;
+    color: rgba(255, 255, 255, .75);
     transition: all .5s;
 }
-.app-header__search input::-webkit-search-decoration,
-.app-header__search input::-webkit-search-cancel-button {
-	display: none; 
-}
+/*
 .app-header__search input[type=search]:focus {
     width: 150px;
     padding-right: 25px;
@@ -123,7 +120,6 @@ h1, h2, p {
     fill: #fff;
 }
 
-
 .app-body__icons,
 .app-body__temp-icons {
     display: flex;
@@ -146,6 +142,7 @@ h1, h2, p {
     color: #2f4f4f;
     margin-bottom: 40px;
 }
+
 .app-nav__list {
     list-style: none;
     padding: 0;
@@ -164,4 +161,19 @@ h1, h2, p {
 }
 .app-nav__list .active a {
     color: #f19c82;
+}
+
+@media all and (max-width: 768px) {
+    html, body, .app-container {
+        height: 100%;
+    }
+    .app-header {
+        height: 65%;
+    }
+    .app-body {
+        height: 25%;
+    }
+    .app-footer {
+        height: 10%;
+    }
 }

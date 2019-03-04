@@ -1,10 +1,75 @@
 const id = (selector) => document.getElementById(selector);
 
-let cityId = 615702;
-const proxy = 'https://proxy-requests.herokuapp.com/';
 const searchBtn = id('search-btn');
 
-function showWeather(x) {
+const proxy = 'https://proxy-requests.herokuapp.com/';
+
+
+let latitude;
+let longitude;
+
+let cityId;
+
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(getPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function getPosition(position) {
+    console.log(position);
+    latitude = position.coords.latitude;
+    console.log(latitude);
+    longitude = position.coords.longitude; 
+    console.log(longitude);
+
+    const geoSearch = `https://www.metaweather.com/api/location/search/?lattlong=${latitude},${longitude}`;
+
+    fetch(proxy+geoSearch) 
+        .then( response => response.json() )
+        .then( response => {
+            console.log(response[0]);
+            cityId = response[0].woeid;     
+            showWeather(cityId);
+        })
+}
+
+getLocation();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function showWeather(cityForDisplay) {
 
     const url = `https://www.metaweather.com/api/location/${cityId}/`;
 
@@ -35,8 +100,11 @@ function showWeather(x) {
         id('temp-max').innerText = tempMax;
     })
 }
-showWeather(cityId);
+// function call display default city
+// showWeather(cityId);
    
+
+// function call display search city
 searchBtn.addEventListener('click', function() {
 
     const citySearch = id('search-value').value;
