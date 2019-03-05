@@ -9,16 +9,18 @@ const weeklyBtn = id('weekly');
 const appHeader = id('app-header');
 const weeklyWrapper = id('app-body__weekly-wrapper');
 
+
 let bodyIcons = document.getElementsByClassName('app-body__icon');
 let cityId;
 let mainTitle = id('city-name');
-
+let loader = id('loader');
 
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(getPosition, showError);
   } else {
     mainTitle.innerHTML = "Location is not supported by browser.";
+    loader.style.display = 'none';
   }
 }
 
@@ -26,15 +28,19 @@ function showError(error) {
     switch(error.code) {
       case error.PERMISSION_DENIED:
         mainTitle.innerHTML = "Location denied. Try manual search."
+        loader.style.display = 'none';
         break;
       case error.POSITION_UNAVAILABLE:
         mainTitle.innerHTML = "Location information is unavailable."
+        loader.style.display = 'none';
         break;
       case error.TIMEOUT:
         mainTitle.innerHTML = "Location request timed out."
+        loader.style.display = 'none';
         break;
       case error.UNKNOWN_ERROR:
         mainTitle.innerHTML = "An unknown error."
+        loader.style.display = 'none';
         break;
     }
   }
@@ -77,6 +83,8 @@ function displayWeather(cityForDisplay) {
         const pressure = Math.floor(weather.air_pressure);
         const tempMin = Math.floor(weather.min_temp);
         const tempMax = Math.floor(weather.max_temp);
+
+        loader.style.display = 'none';
 
         if ( currentTime > 6 && currentTime < 18 ) {
           appHeader.classList.add('app-header__day');
@@ -151,6 +159,7 @@ function findCityById() {
             if (response[0] == undefined) {
 
                 id('city-name').innerHTML = `Can't find ${citySearch} :(`;
+                loader.style.display = 'none';
                 id('conditions').innerHTML = "";
                 id('temp').innerText = "";
                 id('wind').innerText = "";
@@ -186,6 +195,10 @@ searchBtn.addEventListener('click', findCityById);
 searchByEnterKey.addEventListener("keydown", function(event) {
     if (event.which == 13 || event.keyCode == 13) {
         event.preventDefault();
+        mainTitle.innerHTML = "";
+        id('conditions').innerHTML = "";
+        id('temp').innerText = "";
+        loader.style.display = 'inline';
         findCityById();
     }
 });
