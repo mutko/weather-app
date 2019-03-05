@@ -1,14 +1,18 @@
 const id = (selector) => document.getElementById(selector);
 
-let bodyIcons = document.getElementsByClassName('app-body__icon');
-
-const searchBtn = id('search-btn');
+const proxy = 'https://proxy-requests.herokuapp.com/';
 const mapBtn = id('map-btn')
 const searchByEnterKey = id("search-value");
-const proxy = 'https://proxy-requests.herokuapp.com/';
+const searchBtn = id('search-btn');
+const dailyBtn = id('daily');
+const weeklyBtn = id('weekly');
+const appHeader = id('app-header');
+const weeklyWrapper = id('app-body__weekly-wrapper');
 
+let bodyIcons = document.getElementsByClassName('app-body__icon');
 let cityId;
 let mainTitle = id('city-name');
+
 
 function getLocation() {
   if (navigator.geolocation) {
@@ -45,20 +49,21 @@ function getPosition(position) {
     fetch(proxy+geoSearch) 
         .then( response => response.json() )
         .then( response => {
-            console.log(response[0]);
+           // console.log(response[0]);
             cityId = response[0].woeid;     
-            showWeather(cityId);
+            displayWeather(cityId);
         })
 }
 
-function showWeather(cityForDisplay) {
+function displayWeather(cityForDisplay) {
 
     const url = `https://www.metaweather.com/api/location/${cityId}/`;
 
     fetch(proxy+url) 
     .then( response => response.json() )
     .then( response => {
-        console.log(response);
+       // console.log(response);
+        const weeklyWeather = response.consolidated_weather;
 
         const currentTime = response.time.substring(11,13);
 
@@ -74,21 +79,33 @@ function showWeather(cityForDisplay) {
         const tempMax = Math.floor(weather.max_temp);
 
         if ( currentTime > 6 && currentTime < 18 ) {
-            id('app-header').style.background = "url('bg.png') no-repeat bottom center, linear-gradient(to top, #fad4af, #f19c82)";
-            for (let i = 0; i < bodyIcons.length; i++) {
-                bodyIcons[i].style.background = "#f19c82";
-            }
+          appHeader.classList.add('app-header__day');
+          for (let i = 0; i < bodyIcons.length; i++) {
+            bodyIcons[i].classList.add('icons-bg__day');
+          }
+
+          appHeader.classList.remove('app-header__night');
+          for (let i = 0; i < bodyIcons.length; i++) {
+            bodyIcons[i].classList.remove('icons-bg__night');
+          }
+
         } else {
-            id('app-header').style.background = "url('bg.png') no-repeat bottom center, linear-gradient(to top, #6365cf, #1c3b88)";
-            for (let i = 0; i < bodyIcons.length; i++) {
-                bodyIcons[i].style.background = "#524ea4";
-            }
+          appHeader.classList.add('app-header__night');
+          for (let i = 0; i < bodyIcons.length; i++) {
+            bodyIcons[i].classList.add('icons-bg__night');
+          }
+
+          appHeader.classList.remove('app-header__day');
+          for (let i = 0; i < bodyIcons.length; i++) {
+            bodyIcons[i].classList.remove('icons-bg__day');
+          }
+
         }
 
         mainTitle.innerHTML = cityName;
 
-        id('temp').innerText = tempNow;
-        id('conditions').innerHTML = `<img src=${weatherIcon} alt="Weather conditions"> 
+        id('temp').innerHTML = `${tempNow}<sup>o</sup>`;
+        id('conditions').innerHTML = `<img src=${weatherIcon} alt="Weather conditions" class="weather-img"> 
                                         <span>${conditions}</span>
         `;
         id('wind').innerText = wind;
@@ -97,6 +114,30 @@ function showWeather(cityForDisplay) {
         id('temp-now').innerText = tempNow;
         id('temp-min').innerText = tempMin;        
         id('temp-max').innerText = tempMax;
+
+        let weeklyWeatherPlaceholder = ``;
+        
+
+        for ( let i = 1; i < weeklyWeather.length; i++ ) {
+          console.log( weeklyWeather[i] );
+          weeklyWeatherPlaceholder += `
+            <div class="weekly-data">
+              <div>
+                ${weeklyWeather[i].applicable_date}
+              </div>
+              <div>
+                ${Math.floor(weeklyWeather[i].the_temp)}&#176;
+              </div>
+              <div>
+                ${weeklyWeather[i].weather_state_name}
+              </div>
+              <img src="https://www.metaweather.com/static/img/weather/${weeklyWeather[i].weather_state_abbr}.svg" width="35">
+            </div>
+          `;
+        }
+        weeklyWrapper.innerHTML = "";
+        weeklyWrapper.innerHTML += weeklyWeatherPlaceholder;
+
     })
 }
 
@@ -108,24 +149,57 @@ function findCityById() {
         .then( response => response.json() )
         .then( response => {
             if (response[0] == undefined) {
+
                 id('city-name').innerHTML = `Can't find ${citySearch} :(`;
+                id('conditions').innerHTML = "";
+                id('temp').innerText = "";
+                id('wind').innerText = "";
+                id('humidity').innerText = "";
+                id('pressure').innerText = "";
+                id('temp-now').innerText = "";
+                id('temp-min').innerText = "";        
+                id('temp-max').innerText = "";
+                weeklyWrapper.innerHTML = "No data to display";
+
+                // appHeader.classList.remove('app-day');
+                appHeader.classList.remove('app-header__night');
+                appHeader.classList.remove('app-header__day');
+
+                for (let i = 0; i < bodyIcons.length; i++) {
+                  bodyIcons[i].classList.remove('icons-bg__day');
+                  bodyIcons[i].classList.remove('icons-bg__night');
+                }
+
             } else {
                 cityId = response[0].woeid;     
-                showWeather(cityId);
+                displayWeather(cityId);
             }   
         })
 }
 
-// function call display nearest city
+// function call display nearest city by default
 getLocation();
-
-searchBtn.addEventListener('click', findCityById);
 
 mapBtn.addEventListener('click', getLocation);
 
+searchBtn.addEventListener('click', findCityById);
 searchByEnterKey.addEventListener("keydown", function(event) {
     if (event.which == 13 || event.keyCode == 13) {
         event.preventDefault();
         findCityById();
     }
 });
+
+weeklyBtn.addEventListener('click', function() {
+  dailyBtn.classList.remove('active');
+  this.classList.add('active');
+  document.querySelector('.app-body__daily-wrapper').classList.add('active-not');
+  id('app-body__weekly-wrapper').classList.remove('active-not');
+})
+
+dailyBtn.addEventListener('click', function() {
+    weeklyBtn.classList.remove('active');
+    this.classList.add('active');
+    document.querySelector('.app-body__daily-wrapper').classList.remove('active-not');
+    id('app-body__weekly-wrapper').classList.add('active-not');
+  })

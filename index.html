@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Weather App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     
 </head>
@@ -15,20 +16,20 @@
             <div class="wrapper">
 
                 <header class="app-header__buttons">
-                    <a href="#" id="map-btn" class="map-btn" title="Get weather for nearest city">
-                        <img src="icons/map-marker.svg" alt="Map marker icon" class="svg-img">
-                    </a>
+                    <p href="#" id="map-btn" class="map-btn" title="Get weather for nearest city">
+                        <img src="map-marker.svg" alt="Find nearest city" class="svg-img">
+                    </p>
                     <p>Branko's<br>Wheater&nbsp;App</p>
                     <div class="app-header__search">
                         <input type="text" id="search-value">
                     </div>
-                    <img src="icons/search.svg" alt="Search icon" id="search-btn">
+                    <img src="search.svg" alt="Search button" id="search-btn">
                 </header>
                 <section class="app-header__screen">
                     <h1 id="city-name">Searching nearest city</h1>
                     <p id="demo"></p>
                     <p class="temperature">
-                        <span id="temp">0</span><sup>o</sup>
+                        <span id="temp"></span>
                     </p>
                     <p id="conditions">
                         <span></span>
@@ -39,59 +40,60 @@
         </div><!-- end app-header -->
 
         <div class="app-body">
-            <div class="app-body__icons">
-                <div class="app-body__icon">
-                    <img src="icons/wind.svg" alt="Wind speed">
-                    <p>
-                        Wind</span>&nbsp;
-                        <span id="wind">0</span>m/s</p>
+            <div class="app-body__daily-wrapper">
+                <div class="app-body__icons">
+                    <div class="app-body__icon">
+                        <i class="fas fa-wind fa-2x"></i>
+                        <p>
+                            Wind</span>&nbsp;<span id="wind">0</span>m/s</p>
+                    </div>
+                    <div class="app-body__icon">
+                        <i class="fas fa-tint fa-2x"></i>
+                        <p>
+                            Humidity&nbsp;<span id="humidity">0</span>%
+                        </p>
+                    </div>
+                    <div class="app-body__icon">
+                        <i class="far fa-clock fa-2x"></i>
+                        <p>
+                            Atmpr&nbsp;<span id="pressure">0</span>mb</p>
+                    </div>
                 </div>
-                <div class="app-body__icon">
-                    <img src="icons/humidity.svg" alt="Humidity percent">
-                    <p>
-                        Humidity&nbsp;
-                        <span id="humidity">0</span>%
-                    </p>
+                <div class="app-body__temp-icons">
+                    <i class="fas fa-temperature-low fa-2x"></i>
+                    <div class="app-body__temp">
+                        <p>Now</p>
+                        <br>
+                        <span id="temp-now">0</span><sup>o</sup>
+                    </div>
+                    <div class="app-body__temp">
+                        <p>Min</p>
+                        <br>
+                        <span id="temp-min">0</span><sup>o</sup>
+                    </div>
+                    <div class="app-body__temp">
+                        <p>Max</p>
+                        <br>
+                        <span id="temp-max">0</span><sup>o</sup>
+                    </div>
                 </div>
-                <div class="app-body__icon">
-                    <img src="icons/pressure.svg" alt="Atmospheric pressure">
-                    <p>
-                        Atmpr&nbsp;
-                        <span id="pressure">0</span>mb</p>
-                </div>
-            </div>
-            <div class="app-body__temp-icons">
-                <img src="icons/temp.svg" alt="Temperature">
-                <div class="app-body__temp">
-                    <p>Now</p>
-                    <br>
-                    <span id="temp-now">0</span><sup>o</sup>
-                </div>
-                <div class="app-body__temp">
-                    <p>Min</p>
-                    <br>
-                    <span id="temp-min">0</span><sup>o</sup>
-                </div>
-                <div class="app-body__temp">
-                    <p>Max</p>
-                    <br>
-                    <span id="temp-max">0</span><sup>o</sup>
-                </div>
-            </div>
+            </div><!-- end app-body daily wrapper-->
+
+            <div id="app-body__weekly-wrapper" class="active-not"></div>
         </div><!-- end app-body -->
 
         <div class="app-footer">
             <nav class="app-nav">
                 <ul class="app-nav__list">
-                    <li class="active">
-                        <img src="icons/day.svg" alt="Day">
+                    <li id="daily" class="active">
+                        <i class="fas fa-calendar-day fa-2x"></i>
                         <br>
-                        <a href="#">Today</a>
+                        <p>Today</p>
                     </li>
-                    <li>
-                        <img src="icons/week.svg" alt="Week">
+                    <li id="weekly">
+                        <i class="fas fa-calendar-alt fa-2x"></i>
                         <br>
-                        <a href="#">Weekly</a>
+                        <p>Weekly</p>
                     </li>
                 </ul>
             </nav>
@@ -99,8 +101,6 @@
         
     </div><!-- end app-container -->
     
-
-
     <script src="main.js"></script>
 </body>
 </html>
